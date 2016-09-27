@@ -1,4 +1,6 @@
 function puts_something()
 {
-	alert('Hello people from JavaScript!!!')
+	var x = window.localStorage.getItem('aaa');
+	// x = 
+	alert(x);//'Hello people from JavaScript!!!')
 }
