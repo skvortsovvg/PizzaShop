@@ -8,5 +8,9 @@ function puts_something()
 
 function add_to_cart(id)
 {
-	alert('Added ' + id + ' to cart!');
+	key = 'product_'+id;
+	var product = window.localStorage.getItem(key);
+	product = +product+1 || 1
+	window.localStorage.setItem(key, product);	
+	alert('Product ' + key + ' in the cart. Count: ' + product);
 }
