@@ -1,9 +1,17 @@
 <h2>Welcome to Pizza Shop!</h2>
-<button class="btn btn-primary" onclick="puts_something()">Нажми меня!</button>
+<div class="row">
+	<% @products.each do |p| %>
+	<div class="col-md-4">
+		<div>
+			<img src="<%= p.path_to_image %>">	
+		</div>
+		<div>
+			<%= p.title	%>
+		</div>
+		<div>
+			<%= p.description %>
+		</div>
 
-<!-- <script type="text/javascript">
-	function puts_something()
-	{
-		alert('Hello!')
-	}
-</script> -->
+	</div>
+	<% end %>
+</div>
