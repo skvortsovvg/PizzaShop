@@ -19,7 +19,10 @@ function get_count()
 {
 	var count = 0;
 	for (var i = 0; i < localStorage.length; i++){
-    count = count + window.localStorage[window.localStorage.key(i)]*1;
+		if (window.localStorage.key(i).indexOf('product')==0) 
+		{
+    	count = count + window.localStorage[window.localStorage.key(i)]*1;
+    	}
 	}
 	return count;
 }
