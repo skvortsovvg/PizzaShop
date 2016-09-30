@@ -20,6 +20,11 @@
 		<![endif]-->
 	</head>
 	<body>
+	<script type="text/javascript">
+		$(function() {
+  		document.getElementById('cart').innerHTML = 'Cart ('+get_count()+')'
+  	})
+  	</script>
 		<div class="container">
 
 			<!-- Static navbar -->
@@ -38,6 +43,9 @@
 			      <li><a href="/about">About</a></li>
 			      <li><a href="/something">Something</a></li>
 			      <li><a href="/contacts">Contacts</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+			        <li><img src="./images/cart.png"><b><a id="cart" href="/login/form">Cart()</a></b></li>
 			    </ul>
 			  </div><!--/.nav-collapse -->
 			</nav>
