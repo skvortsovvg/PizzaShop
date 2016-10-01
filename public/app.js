@@ -12,7 +12,7 @@ function add_to_cart(id)
 	var product = window.localStorage.getItem(key);
 	product = +product+1 || 1
 	window.localStorage.setItem(key, product);
-	alert('Product ' + key + ' in the cart. Count: ' + product);
+	get_count();
 }
 
 function get_orders()
@@ -36,5 +36,6 @@ function get_count()
     	count = count + window.localStorage[window.localStorage.key(i)]*1;
     	}
 	}
+	$('#crt_btn').text('Cart (' + count + ')');
 	return count;
 }
