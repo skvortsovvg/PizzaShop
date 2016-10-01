@@ -15,6 +15,18 @@ function add_to_cart(id)
 	alert('Product ' + key + ' in the cart. Count: ' + product);
 }
 
+function get_orders()
+{
+	var orders = '';
+	for (var i = 0; i < localStorage.length; i++){
+		if (window.localStorage.key(i).indexOf('product')==0) 
+		{
+    	orders = orders + window.localStorage.key(i) + '=' + window.localStorage[window.localStorage.key(i)]*1+',';
+    	}
+	}
+	$('#orders').val(orders);
+}
+
 function get_count()
 {
 	var count = 0;

@@ -45,7 +45,13 @@
 			      <li><a href="/contacts">Contacts</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
-			        <li><img src="./images/cart.png"><b><a id="cart" href="/login/form">Cart()</a></b></li>
+			    	<form id="crt" action="/cart" method="POST">
+			        	<li>
+			        	<input id="orders" type="hidden" name="orders_in_cart">
+			        	<button type="submit" class="btn btn-primary btn-lg" onclick="get_orders()"><img src="./images/cart.png" style="vertical-align: middle"><div style="display: inline-block" id="cart">Cart(...)</div></button>
+			        	</li>
+
+			        </form>
 			    </ul>
 			  </div><!--/.nav-collapse -->
 			</nav>
