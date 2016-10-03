@@ -1,1 +1,48 @@
-<h2>Cart page!</h2>
+<h2>Оформление заказа</h2>
+<br>
+<form action="/confirm" method="POST">
+	
+	 <div class="form-group">
+	    <label>Ваше имя</label>
+	    <input name="order[name]" type="text" class="form-control" placeholder="введите ваше имя", value="<%=params[:order][:name] if params[:order]%>">
+	  </div>
+	
+	  <div class="form-group">
+	    <label>Ваш телефон</label>
+	    <input name="order[phone]" type="text" class="form-control" placeholder="введите номер телефона">
+	  </div>
+	
+	  <div class="form-group">
+	    <label>Адрес доставки</label>
+	    <input name="order[adress]" type="text" class="form-control" placeholder="введите адрес доставки">
+	  </div>
+	<br>
+
+	<table class="table"> 
+	<caption>Состав заказа: </caption>
+	  <thead> 
+	    <tr> 
+	      <th>№</th> 
+	      <th>Product</th> 
+	      <th>Size</th> 
+	      <th>Amount</th> 
+	      <th>Price</th> 
+	    </tr>
+	  </thead> 
+	  <tbody>
+	    <% @ord_list.each_with_index do |pos, i| pr = Product.find(pos[1])%>
+	      <tr>
+	        <th scope='row'><%=i+1%></th>
+	        <td><%=pr.title%></td> 
+	        <td><%=pr.size%></td> 
+	        <td><%=pos[2]%></td> 
+	        <td><%=pr.price%></td> 
+	      <tr>
+	    <% end %>
+	      </tbody> 
+	</table>
+	
+	<input name="order[content]" type="hidden" value="<%=@order%>">
+	<input type="submit" name="confirm" value="Confirm" class="btn btn-primary">
+
+</form>

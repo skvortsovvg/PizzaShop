@@ -10,6 +10,10 @@ class Product < ActiveRecord::Base
 
 end
 
+class Order < ActiveRecord::Base
+
+end
+
 get '/' do
 	@products = Product.all
 	erb :index
@@ -20,5 +24,13 @@ get '/about' do
 end
 
 post '/cart' do
+	@order = params[:orders_in_cart]
+	@ord_list = @order.split(/,/).map {|val| val.split(/=/).map { |pr| pr.split(/_/)}.flatten}
 	erb :cart
+end
+
+post '/confirm' do
+	order = Order.new(params[:order])
+	order.save
+	erb "Заказ подтвержден!"
 end
