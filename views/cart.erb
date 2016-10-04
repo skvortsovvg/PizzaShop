@@ -1,6 +1,6 @@
 <h2>Оформление заказа</h2>
 <br>
-<form action="/confirm" method="POST">
+<form action="/confirm">
 	
 	 <div class="form-group">
 	    <label>Ваше имя</label>
@@ -57,6 +57,8 @@
 	</table>
 	
 	<input id = "order" name="order[content]" type="hidden" value="<%=@order%>">
-	<input type="submit" name="confirm" value="Confirm" class="btn btn-primary"">
-
+	<input type="submit" formmethod="POST" name="confirm" value="Confirm" class="btn btn-primary"">
+	<input type="submit" formmethod="GET" name="confirm" value="Cancel" class="btn btn-danger" onclick="clear_cart()">
+	
 </form>
+

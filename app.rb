@@ -26,6 +26,10 @@ get '/about' do
 	erb :about
 end
 
+get '/confirm' do
+	redirect to '/'
+end
+
 get '/orders_list' do
 	@orders = Order.all.order('created_at DESC')
 	erb :orders_list

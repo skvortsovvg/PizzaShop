@@ -42,12 +42,13 @@ function get_count()
 
 function clear_cart() 
 {
-	var count = localStorage.length;
-	for (var i = 0; i < count; i++){
+	var to_clear = []
+	for (var i = 0; i < localStorage.length; i++){
 		if (window.localStorage.key(i).indexOf('product')==0) 
 		{
-    		window.localStorage.removeItem(window.localStorage.key(i));
+    		to_clear.push(window.localStorage.key(i));
     	}
 	}
+	to_clear.forEach(function(item) {window.localStorage.removeItem(item)});
 	get_count();
 }
