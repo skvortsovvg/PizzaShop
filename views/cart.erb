@@ -4,17 +4,17 @@
 	
 	 <div class="form-group">
 	    <label>Ваше имя</label>
-	    <input name="order[name]" type="text" class="form-control" placeholder="введите ваше имя", value="<%=params[:order][:name] if params[:order]%>">
+	    <input name="order[name]" type="text" class="form-control" placeholder="введите ваше имя" value="<%=params[:order][:name] if params[:order]%>">
 	  </div>
 	
 	  <div class="form-group">
 	    <label>Ваш телефон</label>
-	    <input name="order[phone]" type="text" class="form-control" placeholder="введите номер телефона">
+	    <input name="order[phone]" type="text" class="form-control" placeholder="введите номер телефона" value="<%=params[:order][:phone] if params[:order]%>">
 	  </div>
 	
 	  <div class="form-group">
 	    <label>Адрес доставки</label>
-	    <input name="order[adress]" type="text" class="form-control" placeholder="введите адрес доставки">
+	    <input name="order[adress]" type="text" class="form-control" placeholder="введите адрес доставки" value="<%=params[:order][:adress] if params[:order]%>">
 	  </div>
 	<br>
 
@@ -31,8 +31,9 @@
 	    </tr>
 	  </thead> 
 	  <tbody>
+	  <% ord_list = @order.split(/,/).map {|val| val.split(/=/).map { |pr| pr.split(/_/)}.flatten} %>
 	  <% total = 0.0; total_amount = 0 %>
-	    <% @ord_list.each_with_index do |pos, i| pr = Product.find(pos[1]); %>
+	    <% ord_list.each_with_index do |pos, i| pr = Product.find(pos[1]); %>
 	    	<% total 		+= pos[2].to_i*pr.price.to_i %>
 	    	<% total_amount += pos[2].to_i %>
 	    <tr>
@@ -55,7 +56,7 @@
       </tbody> 
 	</table>
 	
-	<input name="order[content]" type="hidden" value="<%=@order%>">
-	<input type="submit" name="confirm" value="Confirm" class="btn btn-primary">
+	<input id = "order" name="order[content]" type="hidden" value="<%=@order%>">
+	<input type="submit" name="confirm" value="Confirm" class="btn btn-primary"">
 
 </form>

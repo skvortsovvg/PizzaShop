@@ -11,7 +11,10 @@ class Product < ActiveRecord::Base
 end
 
 class Order < ActiveRecord::Base
-
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :adress, presence: true
+	validates :content, presence: true
 end
 
 get '/' do
@@ -23,14 +26,23 @@ get '/about' do
 	erb :about
 end
 
+get '/orders_list' do
+	@orders = Order.all.order('created_at DESC')
+	erb :orders_list
+end
+	
 post '/cart' do
-	@order = params[:orders_in_cart]
-	@ord_list = @order.split(/,/).map {|val| val.split(/=/).map { |pr| pr.split(/_/)}.flatten}
+	@order = params[:order][:content]
 	erb :cart
 end
 
 post '/confirm' do
 	order = Order.new(params[:order])
-	order.save
-	erb "Заказ подтвержден!"
+	if order.save then
+		erb :order_confirmed
+	else
+		@error = order.errors.full_messages.first
+		@order = params[:order][:content]
+		erb :cart
+	end
 end

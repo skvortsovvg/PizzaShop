@@ -41,13 +41,13 @@
 			  <div class="navbar-collapse collapse">
 			    <ul class="nav navbar-nav">
 			      <li><a href="/about">About</a></li>
-			      <li><a href="/something">Something</a></li>
+			      <li><a href="/orders_list">Orders list</a></li>
 			      <li><a href="/contacts">Contacts</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			    	<form id="crt" action="/cart" method="POST">
 			        	<li>
-			        	<input id="order" name="orders_in_cart" type="hidden">
+			        	<input id="order" name="order[content]" type="hidden">
 			        	<button type="submit" class="btn btn-primary btn-lg" onclick="get_orders()"><img src="./images/cart.png" style="vertical-align: middle"><div style="display: inline-block" id="crt_btn">Cart(...)</div></button>
 			        	<!-- <button id="crt_btn" type="submit" class="btn btn-primary btn-lg" on="get_count()" onclick="get_orders()"><img src="./images/cart.png" style="vertical-align: middle">Cart(...)</button> -->
 			        	</li>

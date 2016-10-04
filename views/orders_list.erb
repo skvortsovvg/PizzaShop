@@ -1,0 +1,45 @@
+<h2>Список заказов:</h2>
+<br>
+
+<% @orders.each  do |order| %>
+<div class="bs-example" data-example-id="lead-copy">
+	<h4>#<%="#{order.id} #{order.name} "%><small>confirmed at <%=order.created_at%></small></h4>
+	<table class="table"> 
+	<caption align="left">Состав заказа: </caption>
+	  <thead> 
+	    <tr> 
+	      <th>№</th> 
+	      <th>Product</th> 
+	      <th>Size</th> 
+	      <th>Amount</th> 
+	      <th>Price</th> 
+	      <th>Sum</th>
+	    </tr>
+	  </thead> 
+	  <tbody>
+	  <% ord_list = order.content.split(/,/).map {|val| val.split(/=/).map { |pr| pr.split(/_/)}.flatten} %>
+	  <% total = 0.0; total_amount = 0 %>
+	    <% ord_list.each_with_index do |pos, i| pr = Product.find(pos[1]); %>
+	    	<% total 		+= pos[2].to_i*pr.price.to_i %>
+	    	<% total_amount += pos[2].to_i %>
+	    <tr>
+	        <th scope='row'><%=i+1%></th>
+	        <td><%=pr.title%></td> 
+	        <td><%=pr.size%></td> 
+	        <td><%=pos[2].to_f%></td> 
+	        <td><%=pr.price.to_f%></td> 
+	        <td><%=pos[2].to_f*pr.price.to_f%></td> 
+	      <tr>
+	    <% end %>
+			<tr>
+	        <th scope='row'>Total:</th>
+	        <td></td> 
+	        <td></td> 
+	        <td><b><%= total_amount.to_f %></b></td> 
+	        <td></td>
+	        <td><b><%= total %></b></td>
+	    <tr>
+	  </tbody> 
+	</table>
+</div>
+<% end %>

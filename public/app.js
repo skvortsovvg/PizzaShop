@@ -39,3 +39,15 @@ function get_count()
 	$('#crt_btn').text('Cart (' + count + ')');
 	return count;
 }
+
+function clear_cart() 
+{
+	var count = localStorage.length;
+	for (var i = 0; i < count; i++){
+		if (window.localStorage.key(i).indexOf('product')==0) 
+		{
+    		window.localStorage.removeItem(window.localStorage.key(i));
+    	}
+	}
+	get_count();
+}
